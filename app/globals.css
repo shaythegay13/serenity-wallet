@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  }
+}
+
+@layer components {
+  .serenity-gradient {
+    background: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
+  }
+  
+  .serenity-card {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20 shadow-soft;
+  }
+  
+  .serenity-button {
+    @apply bg-gradient-to-r from-serenity-500 to-mint-500 text-white font-medium py-2 px-4 rounded-xl hover:from-serenity-600 hover:to-mint-600 transition-all duration-300 transform hover:scale-105 shadow-soft;
+  }
+  
+  .serenity-input {
+    @apply bg-white/70 border border-serenity-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-serenity-300 focus:border-transparent transition-all duration-200 backdrop-blur-sm;
+  }
+}
