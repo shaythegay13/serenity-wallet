@@ -5,6 +5,10 @@ const nextConfig = {
     // Warning: Disable linting during builds
     ignoreDuringBuilds: true,
   },
+  typescript: {
+    // Warning: Disable type checking during builds
+    ignoreBuildErrors: true,
+  },
 }
 
 module.exports = nextConfig

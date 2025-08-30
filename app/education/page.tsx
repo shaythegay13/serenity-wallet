@@ -25,15 +25,13 @@ export default function EducationPage() {
       
       <Header 
         user={user}
-        onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
-        currentView="education"
+        onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
       />
       
       <div className="flex">
         <Sidebar 
           isOpen={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
-          currentView="education"
         />
         
         <main className="flex-1 p-6 transition-all duration-300">

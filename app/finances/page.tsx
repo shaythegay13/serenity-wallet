@@ -26,15 +26,13 @@ export default function FinancesPage() {
       
       <Header 
         user={user}
-        onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
-        currentView="finances"
+        onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
       />
       
       <div className="flex">
         <Sidebar 
           isOpen={sidebarOpen}
           onClose={() => setSidebarOpen(false)}
-          currentView="finances"
         />
         
         <main className="flex-1 p-6 transition-all duration-300">
