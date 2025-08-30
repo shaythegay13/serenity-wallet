@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import Header from './components/Layout/Header';
 import Sidebar from './components/Layout/Sidebar';
@@ -17,15 +19,25 @@ import UserProfile from './components/Profile/UserProfile';
 import FinancesDashboard from './components/Finances/FinancesDashboard';
 import AnalyticsDashboard from './components/Analytics/AnalyticsDashboard';
 import CBTTools from './components/CBT/CBTTools';
+import PaymentModal from './components/Payment/PaymentModal';
 import { mockTransactions, mockBudgets } from './utils/mockData';
 
-function App() {
+export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentView, setCurrentView] = useState('dashboard');
   const [showBalance, setShowBalance] = useState(true);
   const [user, setUser] = useState({ name: 'Alex Johnson' });
+  const [paymentModal, setPaymentModal] = useState<{
+    isOpen: boolean;
+    type: 'add-funds' | 'send-money' | 'pay-bill';
+    amount?: number;
+    recipient?: string;
+  }>({
+    isOpen: false,
+    type: 'add-funds'
+  });
 
   const handleAuth = (email: string, password: string, name?: string) => {
     // Mock authentication - in real app, this would call an API
@@ -33,9 +45,24 @@ function App() {
     setIsAuthenticated(true);
   };
 
-  const handleQuickAction = (action: string) => {
-    console.log('Quick action:', action);
-    // In real app, this would handle the specific action
+  const handleQuickAction = (action: string, data?: any) => {
+    switch (action) {
+      case 'add':
+        setPaymentModal({ isOpen: true, type: 'add-funds' });
+        break;
+      case 'send':
+        setPaymentModal({ isOpen: true, type: 'send-money' });
+        break;
+      case 'receive':
+        // Show receive money instructions or QR code
+        console.log('Show receive money interface');
+        break;
+      case 'invest':
+        setCurrentView('finances');
+        break;
+      default:
+        console.log('Quick action:', action, data);
+    }
   };
 
   if (!isAuthenticated) {
@@ -109,9 +136,6 @@ function App() {
       case 'crisis':
         return <CrisisSupport />;
       
-      case 'crisis':
-        return <CrisisSupport />;
-      
       case 'profile':
         return <UserProfile />;
       
@@ -145,6 +169,14 @@ function App() {
         </main>
       </div>
       
+      <PaymentModal
+        isOpen={paymentModal.isOpen}
+        onClose={() => setPaymentModal({ ...paymentModal, isOpen: false })}
+        type={paymentModal.type}
+        amount={paymentModal.amount}
+        recipient={paymentModal.recipient}
+      />
+      
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-serenity-900/20 backdrop-blur-sm lg:hidden z-30"
@@ -154,5 +186,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Send, Plus, ArrowUpRight, ArrowDownLeft } from 'lucide-react';
 
 interface QuickActionsProps {
-  onAction: (action: string) => void;
+  onAction: (action: string, data?: any) => void;
 }
 
 const actions = [
