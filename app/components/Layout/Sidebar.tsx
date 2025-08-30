@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
   Home, 
   CreditCard, 
@@ -20,25 +22,26 @@ import {
 
 interface SidebarProps {
   isOpen: boolean;
-  currentView: string;
-  onViewChange: (view: string) => void;
+  onClose: () => void;
 }
 
 const menuItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: Home },
-  { id: 'finances', label: 'Finances', icon: CreditCard },
-  { id: 'analytics', label: 'Analytics & Progress', icon: BarChart3 },
-  { id: 'cbt-tools', label: 'CBT Tools', icon: Brain },
-  { id: 'education', label: 'Financial Education', icon: BookOpen },
-  { id: 'learning', label: 'Self-Guided Learning', icon: GraduationCap },
-  { id: 'community', label: 'Community', icon: Users },
-  { id: 'library', label: 'Content Library', icon: Library },
-  { id: 'crisis', label: 'Crisis Support', icon: Shield },
-  { id: 'profile', label: 'Profile', icon: User },
-  { id: 'settings', label: 'Settings', icon: Settings },
+  { id: 'dashboard', label: 'Dashboard', icon: Home, href: '/dashboard' },
+  { id: 'finances', label: 'Finances', icon: CreditCard, href: '/finances' },
+  { id: 'analytics', label: 'Analytics & Progress', icon: BarChart3, href: '/analytics' },
+  { id: 'cbt-tools', label: 'CBT Tools', icon: Brain, href: '/cbt-tools' },
+  { id: 'education', label: 'Financial Education', icon: BookOpen, href: '/education' },
+  { id: 'learning', label: 'Self-Guided Learning', icon: GraduationCap, href: '/learning' },
+  { id: 'community', label: 'Community', icon: Users, href: '/community' },
+  { id: 'library', label: 'Content Library', icon: Library, href: '/library' },
+  { id: 'crisis', label: 'Crisis Support', icon: Shield, href: '/crisis' },
+  { id: 'profile', label: 'Profile', icon: User, href: '/profile' },
+  { id: 'settings', label: 'Settings', icon: Settings, href: '/settings' },
 ];
 
-export default function Sidebar({ isOpen, currentView, onViewChange }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const pathname = usePathname();
+
   return (
     <aside className={`
       bg-white/90 backdrop-blur-md border-r border-serenity-100 transition-all duration-300 ease-in-out shadow-soft
@@ -49,12 +52,13 @@ export default function Sidebar({ isOpen, currentView, onViewChange }: SidebarPr
       <nav className="p-4 space-y-2">
         {menuItems.map((item) => {
           const Icon = item.icon;
-          const isActive = currentView === item.id;
+          const isActive = pathname === item.href;
           
           return (
-            <button
+            <Link
               key={item.id}
-              onClick={() => onViewChange(item.id)}
+              href={item.href}
+              onClick={onClose}
               className={`
                 w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-left
                 transition-all duration-200 ease-in-out
@@ -72,7 +76,7 @@ export default function Sidebar({ isOpen, currentView, onViewChange }: SidebarPr
               `}>
                 {item.label}
               </span>
-            </button>
+            </Link>
           );
         })}
         
