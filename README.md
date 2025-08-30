@@ -1,4 +1,4 @@
-# Serenity Wallet
+# Serenity Wallet 
 
 A mindful approach to financial wellness built with Next.js, React, and TypeScript.
 
