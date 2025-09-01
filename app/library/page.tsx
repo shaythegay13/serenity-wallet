@@ -1,4 +1,4 @@
-'use client'; // ensures this component only runs in the browser
+'use client';
 
 import { useState } from 'react';
 import { UserButton } from "@clerk/nextjs";
@@ -35,8 +35,7 @@ export default function LibraryPage() {
         
         <main className="flex-1 p-6 transition-all duration-300">
           {/* Library content removed */}
-          <h2 className="text-xl font-semibold text-gray-700">Library Page</h2>
-          <p>This page is currently empty.</p>
+          <p>This page has no library content.</p>
         </main>
       </div>
     </div>
