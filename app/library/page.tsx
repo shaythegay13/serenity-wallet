@@ -1,7 +1,7 @@
 'use client'; // ensures this component only runs in the browser
 
 import { useEffect, useState } from 'react';
-import Clock from './Clock'; // make sure the relative path is correct
+import Clock from '../components/Library/Clock'; // make sure the relative path is correct
 
 
 export default function ContentLibrary() {
