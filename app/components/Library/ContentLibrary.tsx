@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Clock from './Clock'; // if in the same folder
 import { Library, Search, Filter, BookOpen, Video, Headphones, Download, Star, Eye } from 'lucide-react';
 import ResourceViewer from './ResourceViewer';
 
