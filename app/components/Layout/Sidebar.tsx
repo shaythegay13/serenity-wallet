@@ -33,7 +33,6 @@ const menuItems = [
   { id: 'education', label: 'Financial Education', icon: BookOpen, href: '/education' },
   { id: 'learning', label: 'Self-Guided Learning', icon: GraduationCap, href: '/learning' },
   { id: 'community', label: 'Community', icon: Users, href: '/community' },
-  { id: 'library', label: 'Content Library', icon: Library, href: '/library' },
   { id: 'crisis', label: 'Crisis Support', icon: Shield, href: '/crisis' },
   { id: 'profile', label: 'Profile', icon: User, href: '/profile' },
   { id: 'settings', label: 'Settings', icon: Settings, href: '/settings' },
